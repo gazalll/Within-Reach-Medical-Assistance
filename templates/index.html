@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="Locate_your_doc" ng-controller="Locate_your_doc">
+
+<head>
+	<!-- Angular Ting -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/styles.css">
+</head>
+
+<body>
+
+<div class="jumbotron">
+	  <div class="display-4" style='text-align: center;'>
+	  	<p>Hi! Its great great to see you here. We welcome you to Locate Your Doctor,</p>
+	  	<p>Mention your worries we are here to help you at all times</p>
+	 </div>
+
+	  <hr class="my-4">
+	  <p style="text-align: center;">We'll use our software to reach out to your doctor in minimal time</p>
+
+	 <div style="padding: 10px 10px; text-align: center;">
+	  	<textarea rows="3" cols="50" id="text" ng-model="text"></textarea>
+	</div>
+
+		<div style="text-align: center;">
+		  <button class="btn btn-primary btn-lg" href="#" ng-click="myFunc()" role="button" ng-click="myFunc()">Submit</button>
+		</div>
+
+<div id="reply" style="text-align: center;" class="jumbotron">
+	<p>{{reply}}</p>
+	<p>{{data1}}</p>
+</div>
+
+<div style="text-align: center;" class="jumbotron">
+	<a id="Doctor-nearest" href = "https://www.google.ca/maps/dir/265+St+Jacques+St,+Montreal,+QC/Steven+Robbins+MD,+800+Boul+Rend+Levesque+O,+Montreal,+QC+H3B+1X9/@45.4997422,-73.5689606,16z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x4cc91a5a23a97d5b:0x82fbdd02f855f65!2m2!1d-73.5593021!2d45.5032593!1m5!1m1!1s0x4cc91a44a78c13f1:0x5d6020c9de44002c!2m2!1d-73.5675947!2d45.5009512!3e0"></a>
+</div>
+
+<div style="text-align: center;" class="jumbotron">
+	<a id="Dentist-nearest" href = "https://www.google.com/maps/dir/45.5031413,-73.5594511/Clinique+Dentaire+Place-Victoria,+800+Rue+du+Square-Victoria,+Montr%C3%A9al,+QC+H3C+1E8/@45.5017037,-73.5628138,17z/data=!3m1!4b1!4m17!1m6!3m5!1s0x0:0x8b780eed574b04b6!2sClinique+Dentaire+Place-Victoria!8m2!3d45.5004789!4d-73.5619788!4m9!1m1!4e1!1m5!1m1!1s0x4cc91a5b8c8d16f5:0x8b780eed574b04b6!2m2!1d-73.5619792!2d45.5004785!3e0"></a>
+</div>
+
+<div style="text-align: center;" class="jumbotron">
+	<a id="Psych-nearest" href = "https://www.google.com/maps/dir/265+St+Jacques+St,+Montreal,+QC/psychologist/@45.5011349,-73.5685328,16z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x4cc91a5a23a97d5b:0x82fbdd02f855f65!2m2!1d-73.5593021!2d45.5032593!1m5!1m1!1s0x4cc91a46654cb9a9:0x80b0acd00a0d0995!2m2!1d-73.5692848!2d45.503052"></a>
+</div>
+
+<div style="text-align: center;" class="jumbotron">
+	<a id="Physio-nearest" href = "https://www.google.com/maps/dir/265+St+Jacques+St,+Montreal,+QC/physiotherapist/@45.5004585,-73.5649648,17z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x4cc91a5a23a97d5b:0x82fbdd02f855f65!2m2!1d-73.5593021!2d45.5032593!1m5!1m1!1s0x4cc91a5cc09665e3:0x3446f9660701bbfd!2m2!1d-73.5658328!2d45.4995066!3e0"></a>
+</div>
+
+<div class="footer">
+  <p>Built by Aaksha and Gazal</p>
+  	</footer>
+</div>
+
+<script type="text/javascript">
+
+var Locate_your_doc = angular.module('Locate_your_doc', []);
+  Locate_your_doc.controller('Locate_your_doc', function($scope, $http) {
+    $scope.count = 0;
+    $scope.dog = "wagwan shordy"
+
+    $scope.myFunc = function() {
+
+      $scope.count++;
+    	var textArray = $scope.text.split(" ");
+      console.log($scope.count);
+      console.log($scope.text);
+      console.log(textArray);
+
+
+      for(i=0; i < textArray.length; i++) {
+      	if (textArray[i] == "headache" || textArray[i] == "Doctor" || textArray[i] == "doctor" || textArray[i] == "pain" || textArray[i] == "nausea" || textArray[i] == "neauseaus" || textArray[i] == "hurt") {
+      		$scope.reply = "Looks like you may need to see a doctor";
+      		document.getElementById("Doctor-nearest").innerHTML = "Here's the Doctor which is closest to you";
+      	}
+
+        if (textArray[i] == "toothache" || textArray[i] == "dentist" || textArray[i] == "Dentist"){
+      		$scope.reply = "You have a toothache? Looks like you may need to see a dentist";
+      		document.getElementById("Dentist-nearest").innerHTML = "Here's the Dentist which is closest to you";
+
+      	}
+      	if (textArray[i] == "depression" || textArray[i] == "anxiety" || textArray[i] == "sad" || textArray[i] == "overthinking" || textArray[i] == "motivation"){
+      		$scope.reply = "You're not feeling well? Looks like you may need to see a Psychiatrist";
+      		document.getElementById("Psych-nearest").innerHTML = "Here's the Psychiatrist which is closest to you";
+
+      	}
+      	if (textArray[i] == "muscle" || textArray[i] == "sore" || textArray[i] == "muscles" || textArray[i] == "move" || textArray[i] == "back" || textArray[i] == "shoulder"){
+      		$scope.reply = "Looks like you may need to see a Physiotherapist";
+      		document.getElementById("Physio-nearest").innerHTML = "Here's the Physiotherapist which is closest to you";
+      	}
+      }
+
+  };
+    $http.get("jsonstore")
+  .then(function(response) {
+    $scope.data1 = response.data.result;
+    console.log($scope.data1);
+  });
+
+   $http.get("jsonstore2")
+  .then(function(response) {
+    $scope.data2 = response.data;
+    console.log($scope.data2);
+  });
+
+
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+	</body>
+</html>
